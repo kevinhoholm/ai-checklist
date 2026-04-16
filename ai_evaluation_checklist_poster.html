@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Evaluation Checklist</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    min-height: 100vh;
+    background: #0f1729;
+    font-family: 'DM Sans', sans-serif;
+    color: #e8edf5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2.5vw;
+  }
+
+  .poster {
+    width: 100%;
+    max-width: 1100px;
+    background: linear-gradient(160deg, #151f38 0%, #1a2540 40%, #1e2a48 100%);
+    border-radius: 28px;
+    padding: 3.5rem 3.5rem 3rem;
+    border: 1px solid rgba(255,255,255,0.06);
+    box-shadow:
+      0 0 0 1px rgba(255,255,255,0.03),
+      0 40px 80px rgba(0,0,0,0.5),
+      inset 0 1px 0 rgba(255,255,255,0.05);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .poster::before {
+    content: '';
+    position: absolute;
+    top: -120px;
+    right: -80px;
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, rgba(99,179,237,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .poster::after {
+    content: '';
+    position: absolute;
+    bottom: -100px;
+    left: -60px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(237,137,54,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    position: relative;
+  }
+
+  .badge {
+    display: inline-block;
+    background: rgba(99,179,237,0.15);
+    color: #7db8e8;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.4rem 1.2rem;
+    border-radius: 50px;
+    border: 1px solid rgba(99,179,237,0.2);
+    margin-bottom: 1rem;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 3rem;
+    line-height: 1.1;
+    background: linear-gradient(135deg, #ffffff 0%, #93b8e0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+  }
+
+  .subtitle {
+    font-size: 1.05rem;
+    color: #7a8baa;
+    font-weight: 400;
+  }
+
+  .divider {
+    height: 2px;
+    background: linear-gradient(90deg, transparent 0%, rgba(99,179,237,0.3) 50%, transparent 100%);
+    margin-bottom: 2.2rem;
+  }
+
+  .checklist {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.2rem;
+    padding: 1.1rem 1.4rem;
+    background: rgba(255,255,255,0.03);
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,0.05);
+    transition: background 0.3s ease;
+  }
+
+  .item:hover {
+    background: rgba(255,255,255,0.06);
+  }
+
+  .number {
+    flex-shrink: 0;
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-top: 1px;
+  }
+
+  .item:nth-child(1) .number { background: rgba(237,137,54,0.2); color: #f0a050; }
+  .item:nth-child(2) .number { background: rgba(99,179,237,0.2); color: #7db8e8; }
+  .item:nth-child(3) .number { background: rgba(154,120,237,0.2); color: #b08de8; }
+  .item:nth-child(4) .number { background: rgba(72,199,142,0.2); color: #5cc99a; }
+  .item:nth-child(5) .number { background: rgba(237,137,54,0.2); color: #f0a050; }
+  .item:nth-child(6) .number { background: rgba(99,179,237,0.2); color: #7db8e8; }
+  .item:nth-child(7) .number { background: rgba(237,100,100,0.2); color: #e87070; }
+  .item:nth-child(8) .number { background: rgba(72,199,142,0.2); color: #5cc99a; }
+
+  .item-content {
+    flex: 1;
+  }
+
+  .question {
+    font-size: 1.2rem;
+    font-weight: 600;
+    line-height: 1.4;
+    color: #e0e7f0;
+  }
+
+  .hint {
+    font-size: 0.88rem;
+    color: #6a7b99;
+    margin-top: 0.2rem;
+    font-style: italic;
+  }
+
+  .footer {
+    margin-top: 2.2rem;
+    text-align: center;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .footer-text {
+    font-size: 0.95rem;
+    color: #5a6b87;
+    font-weight: 500;
+  }
+
+  .footer-text strong {
+    color: #7db8e8;
+  }
+
+  @media (max-width: 700px) {
+    .poster { padding: 2rem 1.5rem; }
+    h1 { font-size: 2rem; }
+    .question { font-size: 1.05rem; }
+    .item { padding: 0.9rem 1rem; gap: 0.9rem; }
+    .number { width: 32px; height: 32px; font-size: 0.9rem; }
+  }
+</style>
+</head>
+<body>
+  <div class="poster">
+    <div class="header">
+      <div class="badge">Think Before You Trust</div>
+      <h1>AI Evaluation Checklist</h1>
+      <p class="subtitle">Ask yourself these questions every time you read AI-generated text.</p>
+    </div>
+    <div class="divider"></div>
+    <div class="checklist">
+      <div class="item">
+        <div class="number">1</div>
+        <div class="item-content">
+          <div class="question">Does the text actually answer my question?</div>
+          <div class="hint">AI often writes a lot without saying much. Did you get what you asked for?</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="number">2</div>
+        <div class="item-content">
+          <div class="question">Does the information seem accurate?</div>
+          <div class="hint">If something sounds too specific or surprising — look it up.</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="number">3</div>
+        <div class="item-content">
+          <div class="question">Is the text too general or vague?</div>
+          <div class="hint">Could this have been written about any country, topic, or situation?</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="number">4</div>
+        <div class="item-content">
+          <div class="question">Does the AI mention any sources?</div>
+          <div class="hint">No sources = no way to check. Be extra sceptical.</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="number">5</div>
+        <div class="item-content">
+          <div class="question">Is the text just generic filler?</div>
+          <div class="hint">Swap the country or topic name — does the text still make sense? Then it's not specific enough.</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="number">6</div>
+        <div class="item-content">
+          <div class="question">Does it show real cultural understanding?</div>
+          <div class="hint">AI has no lived experience. Does the text feel like it was written by someone who knows this place?</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="number">7</div>
+        <div class="item-content">
+          <div class="question">Are any claims exaggerated or wrong?</div>
+          <div class="hint">AI can "hallucinate" — stating made-up facts with total confidence.</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="number">8</div>
+        <div class="item-content">
+          <div class="question">Would you hand this in without checking it first?</div>
+          <div class="hint">If the answer is yes — stop and think again. AI is a starting point, not a final answer.</div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <p class="footer-text"><strong>Remember:</strong> AI is a tool, not a teacher. Your brain is the quality control.</p>
+    </div>
+  </div>
+</body>
+</html>
